@@ -1,15 +1,16 @@
 package code;
 
 import image.Pixel;
-
+import image.APImage;
 public class ImageManipulation {
 
     /** CHALLENGE 0: Display Image
      *  Write a statement that will display the image in a window
      */
+    private static APImage Keanu;
     public static void main(String[] args) {
-
-
+        Keanu = new APImage("cyberpunk.jpg");
+        Keanu.draw();
     }
 
     /** CHALLENGE ONE: Grayscale
@@ -21,7 +22,16 @@ public class ImageManipulation {
      * Calculate the average of the red, green, and blue components of the pixel.
      * Set the red, green, and blue components to this average value. */
     public static void grayScale(String pathOfFile) {
-
+        Keanu = new APImage(pathOfFile);
+        int width = Keanu.getWidth();
+        int height = Keanu.getHeight();
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                int avg = getAverageColour(Keanu.getPixel(i, j));
+                Pixel p = new Pixel(avg,avg,avg);
+                Keanu.setPixel(i,j,p);
+            }
+        }
     }
 
     /** A helper method that can be used to assist you in each challenge.
@@ -30,7 +40,8 @@ public class ImageManipulation {
      * @return the average RGB value
      */
     private static int getAverageColour(Pixel pixel) {
-        return 0;
+        int avg = (pixel.getRed() + pixel.getBlue() + pixel.getGreen())/3;
+        return avg;
     }
 
     /** CHALLENGE TWO: Black and White
@@ -43,7 +54,23 @@ public class ImageManipulation {
      * If the average is less than 128, set the pixel to black
      * If the average is equal to or greater than 128, set the pixel to white */
     public static void blackAndWhite(String pathOfFile) {
-
+        Keanu = new APImage(pathOfFile);
+        int width = Keanu.getWidth();
+        int height = Keanu.getHeight();
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                int bw = bw(Keanu.getPixel(i,j));
+                Pixel p = new Pixel(bw,bw,bw);
+                Keanu.setPixel(i,j,p);
+            }
+        }
+    }
+    private static int bw(Pixel pixel){
+        int avg = (pixel.getRed() + pixel.getBlue() + pixel.getGreen())/3;
+        if(avg >= 128){
+            return 255;
+        }
+        return 0;
     }
 
     /** CHALLENGE Three: Edge Detection
@@ -69,7 +96,42 @@ public class ImageManipulation {
      * edge detection to an image using a threshold of 35
      *  */
     public static void edgeDetection(String pathToFile, int threshold) {
-
+        Keanu = new APImage(pathToFile);
+        int w = Keanu.getWidth();
+        int h = Keanu.getHeight();
+        boolean[][] border = new boolean[w][h]
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                int avg = getAverageColour(Keanu.getPixel(i,j));
+                Pixel p;
+                if(i>0){
+                    int avg2 = getAverageColour(Keanu.getPixel(i-1,j));
+                    if(Math.abs(avg-avg2) > threshold){
+                        border[i][j] = true;
+                        continue;
+                    }
+                }
+                if(j<h-1){
+                    int avg3 = getAverageColour(Keanu.getPixel(i,j+1));
+                    if(Math.abs(avg - avg3) > threshold){
+                        border[i][j] = true;
+                        continue;
+                    }
+                }
+                border[i][j] = false;
+            }
+        }
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                Pixel p;
+                if(border[i][j]){
+                    p = new Pixel(0,0,0);
+                }else{
+                    p = new Pixel(255,255,255);
+                }
+                Keanu.setPixel(i,j,p);
+            }
+        }
     }
 
     /** CHALLENGE Four: Reflect Image
@@ -79,6 +141,18 @@ public class ImageManipulation {
      *
      */
     public static void reflectImage(String pathToFile) {
+        Keanu = new APImage(pathToFile);
+        APImage temp = Keanu.clone();
+
+        int w = Keanu.getWidth();
+        int h = Keanu.getHeight();
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                Pixel p = temp.getPixel(i,j);
+                Keanu.setPixel(w-i-1,j,p);
+            }
+        }
+
 
     }
 

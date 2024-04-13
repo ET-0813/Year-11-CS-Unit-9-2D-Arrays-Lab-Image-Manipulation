@@ -1,6 +1,19 @@
 # Year-11-CS-Unit-8-2D-Arrays-Lab-Image-Manipulation
 
-This lab includes two packages within the src folder: code and image. If you open the code package, you will see a single class called <b>ImageManipulation</b>. <b>This is the only class that you will be writing code in</b>. If you open the image package, you will see four classes within it: APImage, ImageFileFilter, ImagePanel, and Pixel. The only two classes that you will directly use within your program are <b>APImage</b> and <b>Pixel</b>. The <b>APImage</b> class represents an image as a two-dimensional grid of <b>Pixel</b> objects. You will use the constructors and methods in the <b>APImage</b> class and <b>Pixel</b> class in order to complete this lab. The methods for the <b>APImage</b> and <b>Pixel</b> class are listed below.
+This lab includes two packages within the src folder:code and image. 
+
+If you open the code package, you will see a single class called <b>ImageManipulation</b>. <b>This is the only class that you will be writing code in</b>. 
+
+If you open the image package, you will see four classes within it: APImage, ImageFileFilter, ImagePanel, and Pixel. 
+
+The only two classes that you will directly use within your program are <b>APImage</b> and <b>Pixel</b>. 
+
+The <b>APImage</b> class represents an image as a two-dimensional grid of <b>Pixel</b> objects. 
+
+You will use the constructors and methods in the <b>APImage</b> class and <b>Pixel</b> class in order to complete this lab. 
+
+The methods for the <b>APImage</b> and <b>Pixel</b> class are listed below. 
+
 
 # APImage class
 
