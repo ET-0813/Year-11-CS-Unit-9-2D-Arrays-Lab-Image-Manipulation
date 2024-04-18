@@ -32,6 +32,7 @@ public class ImageManipulation {
                 Keanu.setPixel(i,j,p);
             }
         }
+        Keanu.draw();
     }
 
     /** A helper method that can be used to assist you in each challenge.
@@ -64,6 +65,7 @@ public class ImageManipulation {
                 Keanu.setPixel(i,j,p);
             }
         }
+        Keanu.draw();
     }
     private static int bw(Pixel pixel){
         int avg = (pixel.getRed() + pixel.getBlue() + pixel.getGreen())/3;
@@ -132,6 +134,7 @@ public class ImageManipulation {
                 Keanu.setPixel(i,j,p);
             }
         }
+        Keanu.draw();
     }
 
     /** CHALLENGE Four: Reflect Image
@@ -152,8 +155,7 @@ public class ImageManipulation {
                 Keanu.setPixel(w-i-1,j,p);
             }
         }
-
-
+        Keanu.draw();
     }
 
     /** CHALLENGE Five: Rotate Image
@@ -163,6 +165,18 @@ public class ImageManipulation {
      *
      *  */
     public static void rotateImage(String pathToFile) {
+        Keanu = new APImage(pathToFile);
+
+        int h = Keanu.getHeight();
+        int w = Keanu.getWidth();
+
+        APImage temp = new APImage(h, w);
+        for (int x = 0; x < w-1; x++){
+            for (int y = 0; y < h-1; y++){
+                temp.setPixel(884-y, x, Keanu.getPixel(x, y));
+            }
+        }
+        temp.draw();
 
     }
 
